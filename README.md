@@ -1,4 +1,11 @@
-# elasticsearch-cluster-docker-composer-for-liferay-7 (fork of https://github.com/yasuflatland-lf/elasticsearch-docker-composer-for-liferay-7)
+# elasticsearch-cluster-docker-composer-for-liferay-7
+
+I use the following repository : https://github.com/yasuflatland-lf/elasticsearch-docker-composer-for-liferay-7
+
+I had the clustering of elasticsearch.
+
+==========================================================
+
 This is for setting up docker-composer to test Elasticsearch and Kuromoji against Liferay 7 GA4 / DXP de32 (Elasticsearch 2.4). **This is ```oraclejdk8``` version. If you are looking for ```openjdk8``` version, please refer ```openjdk8``` branch of this repository.**
 
 ## Required environment
