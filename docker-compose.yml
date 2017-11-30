@@ -1,0 +1,43 @@
+version: "3"
+services:
+  elasticsearch:
+    build: es
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./es/data/:/usr/share/elasticsearch/data/
+      - ./es/config/elasticsearch-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es/config/logging.yml:/usr/share/elasticsearch/config/logging.yml
+      - ./es/config/userdict_ja.txt:/usr/share/elasticsearch/config/userdict_ja.txt
+      - ./es/logs/:/var/log/elasticsearch/
+    networks: ['elasticstack']
+
+  elasticsearch-slave1:
+    build: es
+    volumes:
+      - ./es/data/:/usr/share/elasticsearch/data/
+      - ./es/config/elasticsearch-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es/config/logging.yml:/usr/share/elasticsearch/config/logging.yml
+      - ./es/config/userdict_ja.txt:/usr/share/elasticsearch/config/userdict_ja.txt
+      - ./es/logs/:/var/log/elasticsearch/
+    networks: ['elasticstack']
+
+  elasticsearch-slave2:
+    build: es
+    volumes:
+      - ./es/data/:/usr/share/elasticsearch/data/
+      - ./es/config/elasticsearch-3.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./es/config/logging.yml:/usr/share/elasticsearch/config/logging.yml
+      - ./es/config/userdict_ja.txt:/usr/share/elasticsearch/config/userdict_ja.txt
+      - ./es/logs/:/var/log/elasticsearch/
+    networks: ['elasticstack']
+
+  kibana:
+    image: seeruk/docker-kibana-sense:4.6
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    networks: ['elasticstack']
+
+networks: {elasticstack: {}}
